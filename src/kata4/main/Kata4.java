@@ -10,10 +10,31 @@ import kata4.view.MailListReader;
 public class Kata4 {
     
     public static void main(String[] args) throws IOException {
-        String filename = "/Users/Usuario/Desktop/Kata4/email.txt";
-        List<Mail> mailList = MailListReader.read(filename);
+        Kata4 kata4 = new Kata4();
+        kata4.control();
+    }
+    
+    private String filename;
+    private List<Mail> mailList;
+    private HistogramDisplay histoDisplay;
+    
+    private void control() throws IOException {
+        input();
+        process();
+        output();
+    }
+    
+    private void input(){
+        filename = "/Users/Usuario/Desktop/Kata4/email.txt";
+    }
+    
+    private void process() throws IOException {
+        mailList = MailListReader.read(filename);
         Histogram<String> histogram = MailHistogramBuilder.build(mailList);
-        HistogramDisplay histoDisplay = new HistogramDisplay(histogram);
+        histoDisplay = new HistogramDisplay(histogram);
+    }
+    
+    private void output(){
         histoDisplay.execute();
     }
     
